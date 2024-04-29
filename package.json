@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "server_tec",
   "version": "1.0.0",
   "description": "",
@@ -48,4 +49,36 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6"
   }
+=======
+  "name": "compumovil",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.14",
+    "@react-navigation/native": "^6.1.12",
+    "@react-navigation/native-stack": "^6.9.20",
+    "@react-navigation/stack": "^6.3.23",
+    "@types/react": "~18.2.45",
+    "axios": "^1.6.7",
+    "expo": "~50.0.8",
+    "expo-status-bar": "~1.11.1",
+    "react": "18.2.0",
+    "react-native": "0.73.4",
+    "react-native-vector-icons": "^10.0.3",
+    "typescript": "^5.3.0",
+    "react-native-web": "~0.19.6",
+    "react-dom": "18.2.0",
+    "@expo/metro-runtime": "~3.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+>>>>>>> 4b9cdc246c0339ae80be37f6e1a16d81901b71e6
 }

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
@@ -119,4 +120,8 @@
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]
+=======
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base"
+>>>>>>> 4b9cdc246c0339ae80be37f6e1a16d81901b71e6
 }

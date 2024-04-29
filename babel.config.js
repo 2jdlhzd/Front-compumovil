@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module.exports = {
   presets: [
     [
@@ -28,4 +29,11 @@ module.exports = {
       }
     ]
   ]
+=======
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+  };
+>>>>>>> 4b9cdc246c0339ae80be37f6e1a16d81901b71e6
 };
