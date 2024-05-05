@@ -1,11 +1,11 @@
-import Axios from "axios";
+import Axios from 'axios';
 
-export const urlMain = "http://192.168.1.68:3000/api";
+export const urlMain = 'http://192.168.100.4:3000/api';
 //export const urlMain = "https://restcountries.com/v3.1";
 export const multipartHeader = {
   headers: {
-    "Content-type": "application/json",
-  },
+    'Content-type': 'application/json'
+  }
 };
 // const token = localStorage.getItem("user")
 //   ? JSON.parse(localStorage.getItem("user")).token
@@ -13,10 +13,10 @@ export const multipartHeader = {
 
 export default Axios.create({
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json'
     //Authorization: token,
   },
-  baseURL: urlMain,
+  baseURL: urlMain
   // validateStatus: function (status) {
   //   console.log({ status });
   //   if (status === 403) {

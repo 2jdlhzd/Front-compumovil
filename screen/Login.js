@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+  StyleSheet
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Axios from '../Axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
+  const [datos, setDatos] = useState({});
   const handleLogin = () => {
     // Aquí puedes agregar la lógica para manejar el inicio de sesión
   };
 
   const handleCreateAccount = () => {
     // Aquí puedes agregar la lógica para navegar a la pantalla de registro
+  };
+
+  const handle = (text, name) => {
+    console.log(text);
+    setDatos((prev) => ({ ...prev, [name]: text }));
+  };
+  const login = async () => {
+    try {
+      const res = await Axios.post('/usuarios/login', datos);
+
+      await AsyncStorage.setItem('user', JSON.stringify(res.data.response));
+      console.log('correctamente logeado');
+    } catch (error) {}
   };
 
   return (
@@ -26,16 +42,18 @@ const Login = ({ navigation }) => {
           style={styles.input}
           placeholder="Email"
           keyboardType="email-address"
+          onChangeText={(text) => handle(text, 'correo')}
         />
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
           secureTextEntry={true}
+          onChangeText={(text) => handle(text, 'password')}
         />
         <TouchableOpacity
           style={styles.loginButton}
           onPress={() => {
-            navigation.navigate("ListaProducto");
+            login();
           }}
         >
           <Text style={styles.loginButtonText}>Iniciar sesión</Text>
@@ -55,7 +73,7 @@ const Login = ({ navigation }) => {
         <Text
           style={styles.createAccountText}
           onPress={() => {
-            navigation.navigate("Register");
+            navigation.navigate('Register');
           }}
         >
           ¿No tienes una cuenta? Crea una aquí
@@ -68,59 +86,59 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "royalblue",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'royalblue'
   },
 
   title: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-    marginBottom: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 20
   },
   formContainer: {
-    width: "80%",
+    width: '80%',
     marginBottom: 20,
-    margin: 10,
+    margin: 10
   },
   input: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     paddingHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   loginButton: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
-    alignItems: "center",
+    alignItems: 'center'
   },
   loginButtonText: {
-    color: "grey",
-    fontWeight: "bold",
+    color: 'grey',
+    fontWeight: 'bold'
   },
   socialLoginContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
+    flexDirection: 'row',
+    marginBottom: 20
   },
   socialButton: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
-    alignItems: "center",
+    alignItems: 'center',
     marginRight: 10,
-    flexDirection: "row",
+    flexDirection: 'row'
   },
   socialButtonText: {
-    color: "grey",
+    color: 'grey',
     marginLeft: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   createAccountText: {
-    color: "white",
-    textDecorationLine: "underline",
-  },
+    color: 'white',
+    textDecorationLine: 'underline'
+  }
 });
 
 export default Login;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,20 +6,23 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+  ScrollView
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-import Axios from "../Axios";
+import Axios from '../Axios';
+import { userValues } from '../App';
 
 const ListaProducto = ({ navigation }) => {
+  const { token, user } = useContext(userValues);
   const [productos, setProductos] = useState([]);
 
   const addCarrito = async (datos) => {
-    console.log(datos);
     try {
-      await Axios.post("/carritos/crear", datos);
-      console.log("Añadido correctamente");
+      await Axios.post('/carritos/crear', datos, {
+        headers: { Authorization: token }
+      });
+      console.log('Añadido correctamente');
     } catch (error) {
       console.log(error);
     }
@@ -28,12 +31,13 @@ const ListaProducto = ({ navigation }) => {
   useEffect(() => {
     const fechData = async () => {
       try {
-        const response = await Axios.get("/productos/obtener");
-        //console.log(response);
+        const response = await Axios.get('/productos/obtener', {
+          headers: { Authorization: token }
+        });
+
         setProductos((prev) => (prev = response.data.response));
       } catch (err) {
-        console.log("error");
-        console.dir(err);
+        console.log('error');
       }
     };
 
@@ -49,7 +53,7 @@ const ListaProducto = ({ navigation }) => {
           style={styles.icons}
           color="white"
           onPress={() => {
-            navigation.navigate("Carrito");
+            navigation.navigate('Carrito');
           }}
         />
       </View>
@@ -60,7 +64,7 @@ const ListaProducto = ({ navigation }) => {
             <View style={styles.caja} key={producto.id}>
               <View style={styles.producto}>
                 <Image
-                  source={require("../assets/pc.jpg")}
+                  source={require('../assets/pc.jpg')}
                   style={styles.img}
                 />
                 <Text style={styles.text}>{producto.descripcion}</Text>
@@ -80,7 +84,7 @@ const ListaProducto = ({ navigation }) => {
                       nombre: producto.nombre,
                       precio: producto.precio,
                       productos_id: producto.id,
-                      usuario_id: 2,
+                      usuario_id: user.id
                     });
                   }}
                 >
@@ -96,60 +100,60 @@ const ListaProducto = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   contenedor: {
-    flex: 1,
+    flex: 1
   },
   barra: {
     height: 100,
-    backgroundColor: "#6741E0",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
+    backgroundColor: '#6741E0',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
   },
 
   caja: {
     marginTop: 5,
     height: 300,
-    backgroundColor: "white",
+    backgroundColor: 'white'
   },
   producto: {
     margin: 10,
-    flexDirection: "row",
+    flexDirection: 'row'
   },
   img: {
     width: 150,
-    height: 150,
+    height: 150
   },
   botones: {
     flex: 1,
-    justifyContent: "space-around",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   btn1: {
     width: 150,
     height: 40,
-    backgroundColor: "#098F18",
-    borderRadius: 10,
+    backgroundColor: '#098F18',
+    borderRadius: 10
   },
   btn2: {
     width: 160,
     height: 40,
-    backgroundColor: "#008DB9",
-    borderRadius: 10,
+    backgroundColor: '#008DB9',
+    borderRadius: 10
   },
 
   text: {
     marginLeft: 20,
-    width: 225,
+    width: 225
   },
   textoboton: {
     padding: 10,
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center'
   },
   precio: {
     fontSize: 30,
-    marginLeft: 40,
-  },
+    marginLeft: 40
+  }
 });
 
 export default ListaProducto;

@@ -1,55 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "server_tec",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "createDb": "node -e \"require('./build/seeders/index.js').createTables()\"",
-    "createCategorias": "node -e \"require('./build/seeders/index.js').crearCategorias()\"",
-    "createPermisos": "node -e \"require('./build/seeders/index.js').crearPermisos()\"",
-    "build": "babel src --extensions \".ts, .js\"  --out-dir build --copy-files",
-    "start": "node ./build/index.js",
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules  ./src/index.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.6.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-fileupload": "^1.4.1",
-    "jsonwebtoken": "^9.0.1",
-    "morgan": "^1.10.0",
-    "mysql2": "^3.6.0",
-    "sequelize": "^6.32.1",
-    "sequelize-bcrypt": "^1.2.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.22.10",
-    "@babel/core": "^7.22.10",
-    "@babel/node": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-typescript": "^7.22.5",
-    "@flydotio/dockerfile": "^0.4.8",
-    "@types/express": "^4.17.17",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "babel-plugin-module-resolver": "^5.0.0",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-config-standard-with-typescript": "^37.0.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-n": "^16.0.1",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "prettier": "^3.0.1",
-    "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.6"
-  }
-=======
   "name": "compumovil",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
@@ -60,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.1.3",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-navigation/bottom-tabs": "^6.5.14",
     "@react-navigation/native": "^6.1.12",
     "@react-navigation/native-stack": "^6.9.20",
@@ -69,16 +20,14 @@
     "expo": "~50.0.8",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.73.4",
     "react-native-vector-icons": "^10.0.3",
-    "typescript": "^5.3.0",
     "react-native-web": "~0.19.6",
-    "react-dom": "18.2.0",
-    "@expo/metro-runtime": "~3.1.3"
+    "typescript": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
   "private": true
->>>>>>> 4b9cdc246c0339ae80be37f6e1a16d81901b71e6
 }
