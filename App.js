@@ -6,6 +6,7 @@ import Register from './screen/Register';
 import ListaProducto from './screen/ListaProducto';
 import Carrito from './screen/Carrito';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Usuario from './screen/Usuario';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,7 @@ export default function App() {
               <Stack.Screen name="ListaProducto" component={ListaProducto} />
               <Stack.Screen name="Register" component={Register} />
               <Stack.Screen name="Carrito" component={Carrito} />
+              <Stack.Screen name="usuario" component={Usuario} />
             </>
           )}
         </Stack.Navigator>

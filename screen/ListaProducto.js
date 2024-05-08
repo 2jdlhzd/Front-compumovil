@@ -47,6 +47,14 @@ const ListaProducto = ({ navigation }) => {
   return (
     <View style={styles.contenedor}>
       <View style={styles.barra}>
+        <Button
+          onPress={() => {
+            navigation.navigate('usuario');
+          }}
+          title="Informacion de usuario"
+        >
+          Informacion de usuario
+        </Button>
         <Ionicons
           name="cart"
           size={50}
