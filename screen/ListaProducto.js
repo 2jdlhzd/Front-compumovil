@@ -9,12 +9,13 @@ import {
   ScrollView
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import Axios from '../Axios';
-import { userValues } from '../App';
+import { UserValues } from '../providers/UserValues';
 
 const ListaProducto = ({ navigation }) => {
-  const { token, user } = useContext(userValues);
+  const { token, user } = useContext(UserValues);
   const [productos, setProductos] = useState([]);
 
   const addCarrito = async (datos) => {
@@ -47,15 +48,34 @@ const ListaProducto = ({ navigation }) => {
   return (
     <View style={styles.contenedor}>
       <View style={styles.barra}>
-        <Button
+        <TouchableOpacity
+          style={styles.btn2}
           onPress={() => {
             navigation.navigate('usuario');
           }}
-          title="Informacion de usuario"
         >
-          Informacion de usuario
-        </Button>
-        <Ionicons
+          <Text>Usuario</Text>
+          <AntDesign name="shoppingcart" size={24} color="black" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ ...styles.btn2 }}
+          onPress={() => {
+            navigation.navigate('Carrito');
+          }}
+        >
+          <Text>Carrito</Text>
+          <AntDesign name="shoppingcart" size={24} color="black" />
+        </TouchableOpacity>
+        {/* <Button
+          onPress={() => {
+            navigation.navigate('Carrito');
+          }}
+          title="Carrito"
+        >
+          Carrito
+        </Button> */}
+        {/* <Ionicons
           name="cart"
           size={50}
           style={styles.icons}
@@ -63,7 +83,7 @@ const ListaProducto = ({ navigation }) => {
           onPress={() => {
             navigation.navigate('Carrito');
           }}
-        />
+        /> */}
       </View>
 
       <ScrollView>
@@ -76,10 +96,10 @@ const ListaProducto = ({ navigation }) => {
                   style={styles.img}
                 />
                 <Text style={styles.text}>{producto.descripcion}</Text>
-                <Text style={styles.text}>{producto.nombre}</Text>
               </View>
               <View>
-                <Text style={styles.precio}>${producto.nombre}</Text>
+                <Text style={styles.text}>{producto.nombre}</Text>
+                <Text style={styles.precio}>${producto.precio}</Text>
               </View>
               <View style={styles.botones}>
                 <TouchableOpacity style={styles.btn1}>
@@ -91,6 +111,7 @@ const ListaProducto = ({ navigation }) => {
                     addCarrito({
                       nombre: producto.nombre,
                       precio: producto.precio,
+                      descripcion: producto.descripcion,
                       productos_id: producto.id,
                       usuario_id: user.id
                     });
@@ -114,6 +135,7 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: '#6741E0',
     alignItems: 'flex-end',
+    flexDirection: 'row',
     justifyContent: 'flex-end'
   },
 
@@ -161,6 +183,9 @@ const styles = StyleSheet.create({
   precio: {
     fontSize: 30,
     marginLeft: 40
+  },
+  descripcion: {
+    marginLeft: 'auto'
   }
 });
 

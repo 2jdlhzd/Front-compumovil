@@ -9,7 +9,6 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import Axios from '../Axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 
 const Login = ({ navigation }) => {
   const [datos, setDatos] = useState({});
@@ -26,13 +25,17 @@ const Login = ({ navigation }) => {
     console.log(text);
     setDatos((prev) => ({ ...prev, [name]: text }));
   };
+
   const login = async () => {
     try {
       const res = await Axios.post('/usuarios/login', datos);
 
       await AsyncStorage.setItem('user', JSON.stringify(res.data.response));
       console.log('correctamente logeado');
-    } catch (error) {}
+      navigation.navigate('ListaProducto');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -52,12 +55,7 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
           onChangeText={(text) => handle(text, 'password')}
         />
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => {
-            login();
-          }}
-        >
+        <TouchableOpacity style={styles.loginButton} onPress={login}>
           <Text style={styles.loginButtonText}>Iniciar sesión</Text>
         </TouchableOpacity>
       </View>

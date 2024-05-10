@@ -1,19 +1,16 @@
 import { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
-import { userValues } from '../App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { UserValues } from '../providers/UserValues';
 
-const Usuario = () => {
-  const navigation = useNavigation();
-  const { user } = useContext(userValues);
+const Usuario = ({ navigation }) => {
+  const { user } = useContext(UserValues);
 
   const logout = async () => {
     await AsyncStorage.removeItem('user');
-    navigation.push('Login');
+    navigation.navigate('Login');
   };
 
-  console.log(user);
   return (
     <View>
       <Text>{user.nombre}</Text>

@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, Image } from 'react-native';
 import Axios from '../Axios';
-import { userValues } from '../App';
+import { UserValues } from '../providers/UserValues';
+import CheckoutScreen from './CheckoutScreen';
+import sumar from '../assets/Sumar';
 
-const Carrito = () => {
-  const { token } = useContext(userValues);
+const Carrito = ({ navigation }) => {
+  const { token } = useContext(UserValues);
   const [cartItems, setCartItems] = useState([]);
   const [actualizar, setActualizar] = useState(false);
+  const [monto, setMonto] = useState(0);
 
   const deleteItem = async (id) => {
     try {
@@ -34,6 +37,9 @@ const Carrito = () => {
         });
         //console.log(response);
         setCartItems((prev) => (prev = response.data.response));
+
+        const total = sumar(response.data.response, (el) => el.precio);
+        setMonto(total);
       } catch (err) {
         console.log(err);
       }
@@ -48,9 +54,10 @@ const Carrito = () => {
       <FlatList
         data={cartItems}
         renderItem={({ item }) => {
-          console.log(item, 'desde flat');
+          // console.log(item, 'desde flat');
           return (
             <View>
+              <Image source={require('../assets/pc.jpg')} style={styles.img} />
               <Text>{item.nombre}</Text>
               <Text>${item.precio}</Text>
               <Button
@@ -62,15 +69,16 @@ const Carrito = () => {
         }}
         keyExtractor={(item) => item.id}
       />
-      <Text style={styles.total}>
-        Total: ${cartItems.reduce((a, b) => a + b.precio, 0)}
-      </Text>
+      <Text style={styles.total}>Total: {monto}</Text>
+      <View></View>
       <View style={styles.buttonsContainer}>
-        <Button
-          title="Pagar"
-          onPress={() => alert('Redirect to payment gateway')}
-          disabled={cartItems.length === 0}
-        />
+        {monto > 0 && (
+          <CheckoutScreen
+            monto={monto}
+            navigation={navigation}
+            deleteAll={deleteAll}
+          />
+        )}
         <Button
           title="Vaciar Carrito"
           onPress={deleteAll}
@@ -106,6 +114,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 20
+  },
+  img: {
+    width: 150,
+    height: 150
   }
 });
 
