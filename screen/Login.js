@@ -22,7 +22,6 @@ const Login = ({ navigation }) => {
   };
 
   const handle = (text, name) => {
-    console.log(text);
     setDatos((prev) => ({ ...prev, [name]: text }));
   };
 
@@ -40,6 +39,7 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.banner}></View>
       <Ionicons name="laptop" size={100} color="white" />
       <Text style={styles.title}>CompuMóvil</Text>
       <View style={styles.formContainer}>
@@ -86,9 +86,9 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'royalblue'
+    backgroundColor: 'white'
   },
 
   title: {
@@ -106,13 +106,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     paddingHorizontal: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    height: 50
   },
   loginButton: {
     backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 10,
-    alignItems: 'center'
+    borderRadius: 10,
+    padding: 12,
+    alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 2
   },
   loginButtonText: {
     color: 'grey',
@@ -128,7 +133,9 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     marginRight: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 2
   },
   socialButtonText: {
     color: 'grey',
@@ -138,6 +145,13 @@ const styles = StyleSheet.create({
   createAccountText: {
     color: 'white',
     textDecorationLine: 'underline'
+  },
+  banner: {
+    width: '100%',
+    alignItems: 'center',
+    height: 240,
+    borderBottomRightRadius: 400,
+    backgroundColor: '#8400FF'
   }
 });
 

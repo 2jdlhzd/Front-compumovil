@@ -15,7 +15,7 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [fullApellidos, setFullApellidos] = useState('');
 
-  const registro = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const res = await Axios.post('usuarios/crear', {
@@ -32,6 +32,7 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.banner}></View>
       <Ionicons name="laptop" size={100} color="white" />
       <Text style={styles.logoText}>Compumovil</Text>
       <TextInput
@@ -64,6 +65,14 @@ const Register = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Guardar</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Login');
+        }}
+      >
+        <Text style={styles.createAccountText}>Regresar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -71,9 +80,16 @@ const Register = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    //justifyContent: 'center',
     alignItems: 'center'
+  },
+  banner: {
+    width: '100%',
+    alignItems: 'center',
+    height: 240,
+    borderBottomRightRadius: 400,
+    backgroundColor: '#8400FF'
   },
   logoText: {
     fontSize: 24,
@@ -87,7 +103,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderRadius: 5,
-    margin: 10
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 2
   },
   button: {
     backgroundColor: 'white',
@@ -100,6 +118,10 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  createAccountText: {
+    color: 'black',
+    textDecorationLine: 'underline'
   }
 });
 

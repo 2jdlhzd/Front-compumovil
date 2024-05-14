@@ -90,6 +90,7 @@ const ListaProducto = ({ navigation }) => {
         {productos.length > 1 &&
           productos.map((producto) => (
             <View style={styles.caja} key={producto.id}>
+              <Text style={styles.nomb}>{producto.nombre}</Text>
               <View style={styles.producto}>
                 <Image
                   source={require('../assets/pc.jpg')}
@@ -98,7 +99,6 @@ const ListaProducto = ({ navigation }) => {
                 <Text style={styles.text}>{producto.descripcion}</Text>
               </View>
               <View>
-                <Text style={styles.text}>{producto.nombre}</Text>
                 <Text style={styles.precio}>${producto.precio}</Text>
               </View>
               <View style={styles.botones}>
@@ -174,6 +174,12 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 20,
     width: 225
+  },
+  nomb: {
+    marginLeft: 20,
+    width: 225,
+    fontWeight: 'bold',
+    fontSize: 20
   },
   textoboton: {
     padding: 10,
