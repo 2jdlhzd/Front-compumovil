@@ -32,7 +32,7 @@ const Carrito = ({ navigation }) => {
   useEffect(() => {
     const fechData = async () => {
       try {
-        const response = await Axios.get('/carritos/obtener', {
+        const response = await Axios.get('/carritos/obtener ', {
           headers: { Authorization: token }
         });
         //console.log(response);
@@ -57,9 +57,11 @@ const Carrito = ({ navigation }) => {
           // console.log(item, 'desde flat');
           return (
             <View>
+              <Text style={styles.nomb}>{item.nombre}</Text>
               <Image source={require('../assets/pc.jpg')} style={styles.img} />
-              <Text>{item.nombre}</Text>
               <Text>${item.precio}</Text>
+              <Text>{item.producto.descripcion}</Text>
+
               <Button
                 title="elimnar del carrito"
                 onPress={() => deleteItem(item.id)}
@@ -118,7 +120,23 @@ const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 150
+  },
+  nomb: {
+    marginLeft: 20,
+    width: 225,
+    fontWeight: 'bold',
+    fontSize: 20
   }
+
+  // btn: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   width: 300,
+  //   height: 44,
+  //   marginTop: 40,
+  //   backgroundColor: '#8400FF',
+  //   borderRadius: 10
+  // }
 });
 
 export default Carrito;

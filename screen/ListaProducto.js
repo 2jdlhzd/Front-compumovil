@@ -87,7 +87,7 @@ const ListaProducto = ({ navigation }) => {
       </View>
 
       <ScrollView>
-        {productos.length > 1 &&
+        {productos.length > 0 &&
           productos.map((producto) => (
             <View style={styles.caja} key={producto.id}>
               <Text style={styles.nomb}>{producto.nombre}</Text>

@@ -47,6 +47,8 @@ export const getLocalStorage = () => {
 export default function App() {
   const { token, user, error } = getLocalStorage(); //checa si existe la información del usuario
 
+  console.log(token);
+
   return (
     <StripeProvider
       publishableKey="pk_test_51PEN7rGSroiVvTtuUY1aLdrx1vhK6vz77NJcXzCygX9HWXAMsPpzCyPj5kG4S9R4X97CAx9O1xjwKZgexMukppSr00u05qMNZ4"

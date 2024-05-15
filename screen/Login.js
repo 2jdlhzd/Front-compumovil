@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   createAccountText: {
-    color: 'white',
+    color: '#8400FF',
     textDecorationLine: 'underline'
   },
   banner: {
